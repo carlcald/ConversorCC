@@ -55,7 +55,7 @@ public class MainActivityCC extends AppCompatActivity {
         }else
         {
             resultadoTV.setText(String.format("Usted recibirá:"));
-            Toast.makeText(MainActivityCC.this,"Las opiones elegidas no tienen un factor de conversión",Toast.LENGTH_SHORT0).show();
+            Toast.makeText(MainActivityCC.this,"Las opiones elegidas no tienen un factor de conversión",Toast.LENGTH_SHORT).show();
         }
 
     }
