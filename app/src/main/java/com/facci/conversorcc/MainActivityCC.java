@@ -1,5 +1,7 @@
 package com.facci.conversorcc;
 
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -33,6 +35,8 @@ public class MainActivityCC extends AppCompatActivity {
         monedaActualSP = (Spinner) findViewById(R.id.monedaActualSP);
 
         monedaActualSP.setAdapter(adaptador);
+
+
     }
 
     public void ClickConvertir(View v)
@@ -52,6 +56,14 @@ public class MainActivityCC extends AppCompatActivity {
         if (resultado>0){
             resultadoTV.setText(String.format("Por %5.2f %s, usted recibirá %5.2f %s",valorCambio,monedaActual,resultado,monedaCambio));
             valorCambioET.setText("");
+
+            SharedPreferences preferencias = getSharedPreferences("Mis Preferencias", Context.MODE_PRIVATE);
+            SharedPreferences.Editor editor = preferencias.edit();
+
+            editor.putString("monedaActual", monedaActual);
+            editor.putString("monedaCambio",monedaCambio);
+
+            editor.commit();
         }else
         {
             resultadoTV.setText(String.format("Usted recibirá:"));
@@ -74,8 +86,14 @@ public class MainActivityCC extends AppCompatActivity {
                 }
                 break;
             case "EURO":
+                if (monedaCambio.equals("DÓLAR")){
+                    resultadoConversion = valorCambio / factorDolarEuro;
+                }
                 break;
             case "PESO MEXICANO":
+                if (monedaCambio.equals("DÓLAR")){
+                    resultadoConversion = valorCambio * factorPesoDolar;
+                }
                 break;
 
         }

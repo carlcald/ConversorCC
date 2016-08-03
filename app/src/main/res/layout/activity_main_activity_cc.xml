@@ -66,13 +66,14 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Procesar Cambio"
-            android:id="@+id/procesarCambioET" />
+            android:id="@+id/procesarCambioBT"
+            android:onClick="ClickConvertir"/>
 
         <Button
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Acerca De"
-            android:id="@+id/acercaDeCC" />
+            android:id="@+id/acercaDeBT" />
     </LinearLayout>
 
     <TextView
