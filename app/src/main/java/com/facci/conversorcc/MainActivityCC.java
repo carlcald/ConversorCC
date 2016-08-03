@@ -36,7 +36,22 @@ public class MainActivityCC extends AppCompatActivity {
 
         monedaActualSP.setAdapter(adaptador);
 
+        monedaCambioSP = (Spinner) findViewById(R.id.monedaCambioSP);
 
+        SharedPreferences preferencias = getSharedPreferences("MisPreferencias", Context.MODE_PRIVATE);
+
+        String tmpMonedaActual = preferencias.getString("monedaActual","");
+        String tmpMonedaCambio = preferencias.getString("monedaCambio","");
+
+        if (!tmpMonedaActual.equals("")){
+            int indice = adaptador.getPosition(tmpMonedaActual);
+            monedaActualSP.setSelection(indice);
+        }
+
+        if (!monedaCambioSP.equals("")){
+            int indice = adaptador.getPosition(tmpMonedaCambio);
+            monedaCambioSP.setSelection(indice);
+        }
     }
 
     public void ClickConvertir(View v)
@@ -57,7 +72,7 @@ public class MainActivityCC extends AppCompatActivity {
             resultadoTV.setText(String.format("Por %5.2f %s, usted recibirá %5.2f %s",valorCambio,monedaActual,resultado,monedaCambio));
             valorCambioET.setText("");
 
-            SharedPreferences preferencias = getSharedPreferences("Mis Preferencias", Context.MODE_PRIVATE);
+            SharedPreferences preferencias = getSharedPreferences("MisPreferencias", Context.MODE_PRIVATE);
             SharedPreferences.Editor editor = preferencias.edit();
 
             editor.putString("monedaActual", monedaActual);
